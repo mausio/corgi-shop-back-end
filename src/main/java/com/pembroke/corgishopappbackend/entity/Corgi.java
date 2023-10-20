@@ -7,7 +7,6 @@ public class Corgi {
     private int id;
     private String name;
     private int price;
-    private boolean isFavorite;
     private String description;
     private String imageUrl;
 
@@ -20,21 +19,10 @@ public class Corgi {
     public Corgi() {}
 
     //Remove id from constructor when using it in database
-    public Corgi(int id, String name, int price, boolean isFavorite, String description, String imageUrl) {
+    public Corgi(int id, String name, int price, String description, String imageUrl, Date birthdate, String coatColor, int weight, int height, boolean isMale) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.isFavorite = isFavorite;
-        this.description = description;
-        this.imageUrl = imageUrl;
-    }
-
-    //Remove id from constructor when using it in database
-    public Corgi(int id, String name, int price, boolean isFavorite, String description, String imageUrl, Date birthdate, String coatColor, int weight, int height, boolean isMale) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.isFavorite = isFavorite;
         this.description = description;
         this.imageUrl = imageUrl;
         this.birthdate = birthdate;
@@ -66,14 +54,6 @@ public class Corgi {
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    public boolean isFavorite() {
-        return isFavorite;
-    }
-
-    public void setFavorite(boolean favorite) {
-        isFavorite = favorite;
     }
 
     public String getDescription() {
@@ -138,7 +118,6 @@ public class Corgi {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
-                ", isFavorite=" + isFavorite +
                 ", description='" + description + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
                 ", birthdate=" + birthdate +
