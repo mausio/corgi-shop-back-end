@@ -27,6 +27,7 @@ public class CorgiRestController {
         return  ResponseEntity.status(HttpStatus.OK).body(corgiService.findAll());
     }
 
+    //TODO: Delete this method when using a final Database
     @GetMapping("/saveCorgis")
     public ResponseEntity saveCorgisInLocalDatabase() {
 
@@ -44,26 +45,4 @@ public class CorgiRestController {
 
         return ResponseEntity.status(HttpStatus.OK).build();
     }
-
-    /*
-    @GetMapping("/corgis")
-    public List<Corgi> getCorgis() {
-        Corgi corgi1 = new Corgi("Robin", 100, "Robin is dog", "", new Date(), "white", 80, 190, true);
-        Corgi corgi2 = new Corgi("Mael", 200, "Mael is dog", "", new Date(), "notWhite", 80, 190, true);
-        Corgi corgi3 = new Corgi("Lily", 300, "Lily is dog", "", new Date(), "white", 80, 190, true);
-        Corgi corgi4 = new Corgi("Luna", 400, "Luna is dog", "", new Date(), "notWhite", 80, 190, true);
-        Corgi corgi5 = new Corgi("Luna", 500, "Luna is dog", "", new Date(), "notWhite", 80, 190, true);
-
-        List<Corgi> corgis = new ArrayList<>();
-        corgis.add(corgi1);
-        corgis.add(corgi2);
-        corgis.add(corgi3);
-        corgis.add(corgi4);
-        corgis.add(corgi5);
-
-        return corgis;
-    }
-
-     */
-
 }
