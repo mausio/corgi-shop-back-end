@@ -10,7 +10,10 @@ Starting the Back-End:
   - Type into the terminal "docker compose up" for starting docker
   - Start the application via the start-button
   - Make sure that the port for docker and the back-end are not used
+  - When changes occurred to a file in the package "entity", change in applications.properties the value "spring.jpa.hibernate.ddl-auto=" from "update" to "create" ONCE,
+    data in the Database will be deleted
   - When the application is started, and the Database is empty, use the endpoint "/saveCorgis" for saving corgis in the Database
+  - Now Change the value "spring.jpa.hibernate.ddl-auto= in applications.properties back to "update"
   - Now you can use the endpoints
 
 Using Postman:

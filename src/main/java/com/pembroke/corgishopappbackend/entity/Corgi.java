@@ -19,6 +19,7 @@ public class Corgi {
     @Column(name = "price")
     private int price;
 
+    @Lob
     @Column(name = "description")
     private String description;
 
