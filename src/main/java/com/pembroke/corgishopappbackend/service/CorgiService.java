@@ -27,7 +27,6 @@ public class CorgiService {
                 .collect(java.util.stream.Collectors.toList());
     }
 
-    //TODO: Delete this method when using a final Database
     public CorgiDTO save(Corgi corgi) {
         return modelMapper.map(corgiRepository.save(corgi), CorgiDTO.class);
     }
