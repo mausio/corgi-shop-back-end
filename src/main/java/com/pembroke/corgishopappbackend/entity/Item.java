@@ -17,17 +17,28 @@ public class Item {
     @Column(name = "price")
     private int price;
 
-
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
 
+    @Column(name = "is_favorite")
+    private boolean isFavorite;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "image_url")
+    private String imageUrl;
+
     public Item() {}
 
-    public Item(String name, int price, Category category) {
+    public Item(String name, int price, Category category, boolean isFavorite, String description, String imageUrl) {
         this.name = name;
         this.price = price;
         this.category = category;
+        this.isFavorite = isFavorite;
+        this.description = description;
+        this.imageUrl = imageUrl;
     }
 
     public int getId() {
@@ -62,6 +73,30 @@ public class Item {
         this.category = category;
     }
 
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     @Override
     public String toString() {
         return "Item{" +
@@ -69,6 +104,9 @@ public class Item {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", category=" + category +
+                ", isFavorite=" + isFavorite +
+                ", description='" + description + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
                 '}';
     }
 }

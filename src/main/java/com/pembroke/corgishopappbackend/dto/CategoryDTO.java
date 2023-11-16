@@ -6,12 +6,14 @@ public class CategoryDTO {
 
     private int id;
     private String name;
+    private String imageUrl;
     private List<ItemDTO> items;
 
     public CategoryDTO() {}
 
-    public CategoryDTO(String name, List<ItemDTO> items) {
+    public CategoryDTO(String name, String imageUrl, List<ItemDTO> items) {
         this.name = name;
+        this.imageUrl = imageUrl;
         this.items = items;
     }
 
@@ -31,6 +33,14 @@ public class CategoryDTO {
         this.name = name;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     public List<ItemDTO> getItems() {
         return items;
     }
@@ -44,6 +54,7 @@ public class CategoryDTO {
         return "CategoryDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
                 ", items=" + items +
                 '}';
     }

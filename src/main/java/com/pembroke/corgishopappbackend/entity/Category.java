@@ -15,13 +15,17 @@ public class Category {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "image_url") 
+    private String imageUrl;
+
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Item> items;
 
     public Category() {}
 
-    public Category(String name, List<Item> items) {
+    public Category(String name, String imageUrl, List<Item> items) {
         this.name = name;
+        this.imageUrl = imageUrl;
         this.items = items;
     }
 
@@ -41,6 +45,14 @@ public class Category {
         this.name = name;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     public List<Item> getItems() {
         return items;
     }
@@ -54,6 +66,7 @@ public class Category {
         return "Category{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
                 ", items=" + items +
                 '}';
     }

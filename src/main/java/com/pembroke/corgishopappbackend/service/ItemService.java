@@ -1,14 +1,13 @@
 package com.pembroke.corgishopappbackend.service;
 
+import com.pembroke.corgishopappbackend.dao.ItemRepository;
 import com.pembroke.corgishopappbackend.dto.ItemDTO;
 import com.pembroke.corgishopappbackend.entity.Item;
-import com.pembroke.corgishopappbackend.repository.ItemRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ItemService {
@@ -25,7 +24,13 @@ public class ItemService {
     public List<ItemDTO> findAll() {
         return itemRepository.findAll().stream()
                 .map(item -> modelMapper.map(item, ItemDTO.class))
-                .collect(Collectors.toList());
+                .collect(java.util.stream.Collectors.toList());
+    }
+
+    public List<ItemDTO> findByCategoryId(int categoryId) {
+        return itemRepository.findByCategory_Id(categoryId).stream()
+                .map(item -> modelMapper.map(item, ItemDTO.class))
+                .collect(java.util.stream.Collectors.toList());
     }
 
     public ItemDTO save(Item item) {

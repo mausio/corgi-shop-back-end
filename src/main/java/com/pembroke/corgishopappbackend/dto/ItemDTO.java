@@ -6,13 +6,19 @@ public class ItemDTO {
     private String name;
     private int price;
     private CategoryDTO category;
+    private boolean isFavorite;
+    private String description;
+    private String imageUrl;
 
     public ItemDTO() {}
 
-    public ItemDTO(String name, int price, CategoryDTO category) {
+    public ItemDTO(String name, int price, CategoryDTO category, boolean isFavorite, String description, String imageUrl) {
         this.name = name;
         this.price = price;
         this.category = category;
+        this.isFavorite = isFavorite;
+        this.description = description;
+        this.imageUrl = imageUrl;
     }
 
     public int getId() {
@@ -47,6 +53,30 @@ public class ItemDTO {
         this.category = category;
     }
 
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     @Override
     public String toString() {
         return "ItemDTO{" +
@@ -54,6 +84,9 @@ public class ItemDTO {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", category=" + category +
+                ", isFavorite=" + isFavorite +
+                ", description='" + description + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
                 '}';
     }
 }
