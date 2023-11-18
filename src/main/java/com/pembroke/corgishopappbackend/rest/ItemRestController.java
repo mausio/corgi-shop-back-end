@@ -5,10 +5,7 @@ import com.pembroke.corgishopappbackend.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,8 +25,8 @@ public class ItemRestController {
         return ResponseEntity.status(HttpStatus.OK).body(itemService.findAll());
     }
 
-    @GetMapping("/byCategory")
-    public ResponseEntity<List<ItemDTO>> getItemsByCategoryId(@RequestParam int categoryId) {
+    @GetMapping("/byCategory/{categoryId}")
+    public ResponseEntity<List<ItemDTO>> getItemsByCategoryId(@PathVariable int categoryId) {
         return ResponseEntity.status(HttpStatus.OK).body(itemService.findByCategoryId(categoryId));
     }
 }

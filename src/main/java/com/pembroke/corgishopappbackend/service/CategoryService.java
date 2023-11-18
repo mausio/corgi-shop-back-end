@@ -27,8 +27,13 @@ public class CategoryService {
                 .collect(java.util.stream.Collectors.toList());
     }
 
-    public CategoryDTO save(Category category) {
+    public CategoryDTO save(CategoryDTO categoryDTO) {
+        Category category = modelMapper.map(categoryDTO, Category.class);
         return modelMapper.map(categoryRepository.save(category), CategoryDTO.class);
     }
 
+    public CategoryDTO findByName(String categoryName) {
+        Category category = categoryRepository.findByName(categoryName);
+        return modelMapper.map(category, CategoryDTO.class);
+    }
 }

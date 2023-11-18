@@ -15,10 +15,10 @@ public class Category {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "image_url") 
+    @Column(name = "image_url")
     private String imageUrl;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Item> items;
 
     public Category() {}
@@ -61,13 +61,13 @@ public class Category {
         this.items = items;
     }
 
-    @Override
-    public String toString() {
-        return "Category{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
-                ", items=" + items +
-                '}';
+    public void addItem(Item item) {
+        items.add(item);
+        item.setCategory(this);
+    }
+
+    public void removeItem(Item item) {
+        items.remove(item);
+        item.setCategory(null);
     }
 }
