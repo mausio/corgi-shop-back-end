@@ -15,7 +15,7 @@ public class Category {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "image_url") 
+    @Column(name = "image_url")
     private String imageUrl;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
