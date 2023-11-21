@@ -2,6 +2,8 @@ package com.pembroke.corgishopappbackend.rest;
 
 import com.pembroke.corgishopappbackend.dto.CategoryDTO;
 import com.pembroke.corgishopappbackend.dto.ItemDTO;
+import com.pembroke.corgishopappbackend.entity.Category;
+import com.pembroke.corgishopappbackend.entity.Corgi;
 import com.pembroke.corgishopappbackend.service.CategoryService;
 import com.pembroke.corgishopappbackend.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -24,16 +27,25 @@ public class CategoryRestController {
         this.itemService = itemService;
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<CategoryDTO>> getAllCategories() {
-        List<CategoryDTO> exampleCategories = List.of(
-                new CategoryDTO("Category1", "imageUrl1"),
-                new CategoryDTO("Category2", "imageUrl2"),
-                new CategoryDTO("Category3", "imageUrl3")
-        );
+   
+    @GetMapping("/saveCategries")
+    public ResponseEntity saveCategoriesInLocalDatabase() {
 
-        return ResponseEntity.status(HttpStatus.OK).body(exampleCategories);
+        Item item1 = new Item("Blackpullover", 100, "Robin is dog", "", new Date(), "white", 80, 190, true);
+
+        Category category1 = new Category("Pullover", "");
+        Category category2 = new Category("Pillow", "Image Url");
+        Category category3 = new Category("Mug", "Image Url");
+        //items schreiben, der liste hinzufuegen , liste den categorien hinzufuegen (uber den konstruktor und dann saven) 
+
+        categoryService.save(category1);
+        categoryService.save(category2);
+        categoryService.save(category3);
+
+
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
+
 
     @GetMapping("/{name}/items")
     public ResponseEntity<List<ItemDTO>> getItemsByCategoryName(@PathVariable String name) {
