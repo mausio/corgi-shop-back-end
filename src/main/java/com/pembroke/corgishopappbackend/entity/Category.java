@@ -18,7 +18,7 @@ public class Category {
     @Column(name = "image_url")
     private String imageUrl;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Item> items;
 
     public Category() {}
@@ -61,13 +61,13 @@ public class Category {
         this.items = items;
     }
 
-    public void addItem(Item item) {
-        items.add(item);
-        item.setCategory(this);
-    }
-
-    public void removeItem(Item item) {
-        items.remove(item);
-        item.setCategory(null);
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", items=" + items +
+                '}';
     }
 }

@@ -12,11 +12,43 @@ public class CategoryDTO {
 
     public CategoryDTO() {}
 
-    public CategoryDTO(String name, String imageUrl,List<ItemDTO> items, int price, String categoryName, boolean isFavorite, String description) {
+    public CategoryDTO(String name, String imageUrl, List<ItemDTO> items) {
+        this.id = 0;
         this.name = name;
         this.imageUrl = imageUrl;
         this.items = items;
-        
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public List<ItemDTO> getItems() {
+        return items;
+    }
+
+    public void setItems(List<ItemDTO> items) {
+        this.items = items;
     }
 
     @Override
@@ -25,8 +57,7 @@ public class CategoryDTO {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
-                ", items='" + items + '\'' + 
+                ", items=" + items +
                 '}';
-            
     }
 }

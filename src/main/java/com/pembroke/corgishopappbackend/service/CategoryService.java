@@ -4,13 +4,12 @@ import com.pembroke.corgishopappbackend.dao.CategoryRepository;
 import com.pembroke.corgishopappbackend.dto.CategoryDTO;
 import com.pembroke.corgishopappbackend.dto.ItemDTO;
 import com.pembroke.corgishopappbackend.entity.Category;
-import com.pembroke.corgishopappbackend.entity.Item;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoryService {
@@ -24,23 +23,22 @@ public class CategoryService {
         this.modelMapper = modelMapper;
     }
 
-    public List<Item> getAllItemsFromCategory (String categoryName) {
-
-      Category category = categoryRepository.findByName(categoryName);
-        return category.getItems();
-
+    public List<ItemDTO> getAllItemsFromCategory(String categoryName) {
+        Category category = categoryRepository.findByName(categoryName);
+        return category.getItems().stream()
+                .map(item -> modelMapper.map(item, ItemDTO.class))
+                .collect(Collectors.toList());
     }
 
     public List<CategoryDTO> findAll() {
         return categoryRepository.findAll().stream()
                 .map(category -> modelMapper.map(category, CategoryDTO.class))
-                .collect(java.util.stream.Collectors.toList());
+                .collect(Collectors.toList());
     }
 
-    public CategoryDTO save(Category category) {
-        return modelMapper.map(categoryRepository.save(category), CategoryDTO.class);
+    public CategoryDTO save(Category category1) {
+        Category category = modelMapper.map(category1, Category.class);
+        Category savedCategory = categoryRepository.save(category);
+        return modelMapper.map(savedCategory, CategoryDTO.class);
     }
-
-
 }
-

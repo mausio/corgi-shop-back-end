@@ -17,10 +17,6 @@ public class Item {
     @Column(name = "price")
     private int price;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
-
     @Column(name = "is_favorite")
     private boolean isFavorite;
 
@@ -30,22 +26,86 @@ public class Item {
     @Column(name = "image_url")
     private String imageUrl;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
     public Item() {}
 
-    public Item(String name, int price, Category category, boolean isFavorite, String description, String imageUrl) {
+    public Item(String name, int price, boolean isFavorite, String description, String imageUrl) {
         this.name = name;
         this.price = price;
-        this.category = category;
         this.isFavorite = isFavorite;
         this.description = description;
         this.imageUrl = imageUrl;
     }
 
-    // Other methods...
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
 
     public void setCategory(Category category) {
         this.category = category;
     }
 
-    // Other methods...
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", isFavorite=" + isFavorite +
+                ", description='" + description + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", category=" + category +
+                '}';
+    }
 }
