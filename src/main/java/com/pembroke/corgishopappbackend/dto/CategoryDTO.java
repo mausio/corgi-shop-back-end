@@ -12,12 +12,12 @@ public class CategoryDTO {
 
     public CategoryDTO() {}
 
-    public CategoryDTO(String name, String imageUrl,List<ItemDTO> items,  int price, String categoryName, boolean isFavorite, String description) {
+    public CategoryDTO(String name, String imageUrl,List<ItemDTO> items, int price, String categoryName, boolean isFavorite, String description) {
         this.name = name;
         this.imageUrl = imageUrl;
         this.items = items;
+        
     }
-
 
     @Override
     public String toString() {
