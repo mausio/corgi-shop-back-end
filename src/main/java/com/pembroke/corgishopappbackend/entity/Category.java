@@ -3,8 +3,6 @@ package com.pembroke.corgishopappbackend.entity;
 import jakarta.persistence.*;
 import java.util.List;
 
-import com.pembroke.corgishopappbackend.dto.ItemDTO;
-
 @Entity
 @Table(name = "category")
 public class Category {
@@ -23,16 +21,15 @@ public class Category {
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Item> items;
 
-    public Category(String string, String string2, List<ItemDTO> items2) {}
+    public Category() {}
 
-    public Category(String name, String imageUrl, List<ItemDTO> items1) {
+    public Category(String name, String imageUrl, List<Item> items1) {
         this.name = name;
         this.imageUrl = imageUrl;
         this.items = items1;
     }
 
-    public Category(String string, String string2, List<ItemDTO> items3) {
-    }
+    
 
     public int getId() {
         return id;

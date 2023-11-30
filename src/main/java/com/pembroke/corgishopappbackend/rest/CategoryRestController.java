@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pembroke.corgishopappbackend.dto.CategoryDTO;
 import com.pembroke.corgishopappbackend.dto.ItemDTO;
 import com.pembroke.corgishopappbackend.entity.Category;
+import com.pembroke.corgishopappbackend.entity.Item;
 import com.pembroke.corgishopappbackend.service.CategoryService;
 
 import java.util.Arrays;
@@ -29,17 +30,17 @@ public class CategoryRestController {
 
     @GetMapping("/saveCategories")
     public ResponseEntity<Void> saveCategoriesInLocalDatabase() {
-        List<ItemDTO> items1 = Arrays.asList(
-                new ItemDTO("PulloverItem1", 0, false, "Pullover Item1 Image Url", null),
-                new ItemDTO("PulloverItem2", 0, false, "Pullover Item2 Image Url", null)
+        List<Item> items1 = Arrays.asList(
+                new Item("PulloverItem1", 0, false, "Pullover Item1 Image Url", null),
+                new Item("PulloverItem2", 0, false, "Pullover Item2 Image Url", null)
         );
-        List<ItemDTO> items2 = Arrays.asList(
-                new ItemDTO("PillowItem1", 0, false, "Pillow Item1 Image Url", null),
-                new ItemDTO("PillowItem2", 0, false, "Pillow Item2 Image Url", null)
+        List<Item> items2 = Arrays.asList(
+                new Item("PillowItem1", 0, false, "Pillow Item1 Image Url", null),
+                new Item("PillowItem2", 0, false, "Pillow Item2 Image Url", null)
         );
-        List<ItemDTO> items3 = Arrays.asList(
-                new ItemDTO("MugItem1", 0, false, "Mug Item1 Image Url", null),
-                new ItemDTO("MugItem2", 0, false, "Mug Item2 Image Url", null)
+        List<Item> items3 = Arrays.asList(
+                new Item("MugItem1", 0, false, "Mug Item1 Image Url", null),
+                new Item("MugItem2", 0, false, "Mug Item2 Image Url", null)
         );
 
         Category category1 = new Category("Pullover", "Pullover Image Url", items1);
