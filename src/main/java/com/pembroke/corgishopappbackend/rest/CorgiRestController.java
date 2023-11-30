@@ -31,8 +31,8 @@ public class CorgiRestController {
     @GetMapping("/saveCorgis")
     public ResponseEntity saveCorgisInLocalDatabase() {
 
-        Corgi corgi1 = new Corgi("Robin", 100, "Robin is dog", "", new Date(), "white", 80, 190, true);
-        Corgi corgi2 = new Corgi("Mael", 200, "Mael is dog", "", new Date(), "notWhite", 80, 190, true);
+        Corgi corgi1 = new Corgi("Robin", 100, "Robin is dog", "https:\\/\\/images.dog.ceo\\/breeds\\/corgi-cardigan\\/miss-muffin.jpg", new Date(), "white", 80, 190, true);
+        Corgi corgi2 = new Corgi("Mael", 200, "Mael is dog", "https:\\/\\/images.dog.ceo\\/breeds\\/corgi-cardigan\\/n02113186_1030.jpg", new Date(), "notWhite", 80, 190, true);
         Corgi corgi3 = new Corgi("Lily", 300, "Lily is dog", "", new Date(), "white", 80, 190, true);
         Corgi corgi4 = new Corgi("Luna", 400, "Luna is dog", "", new Date(), "notWhite", 80, 190, true);
         Corgi corgi5 = new Corgi("Luna", 500, "Luna is dog", "", new Date(), "notWhite", 80, 190, true);
