@@ -1,5 +1,6 @@
 package com.pembroke.corgishopappbackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -88,6 +89,7 @@ public class Item {
         this.imageUrl = imageUrl;
     }
 
+    @JsonManagedReference
     public Category getCategory() {
         return category;
     }
@@ -105,7 +107,6 @@ public class Item {
                 ", isFavorite=" + isFavorite +
                 ", description='" + description + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
-                ", category=" + category +
                 '}';
     }
 }

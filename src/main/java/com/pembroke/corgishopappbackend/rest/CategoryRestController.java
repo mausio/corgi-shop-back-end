@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +17,6 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@RequestMapping("/categories")
 public class CategoryRestController {
 
     private final CategoryService categoryService;
@@ -28,6 +26,7 @@ public class CategoryRestController {
         this.categoryService = categoryService;
     }
 
+    //TODO: Delete this method when using a final Database
     @GetMapping("/saveCategories")
     public ResponseEntity<Void> saveCategoriesInLocalDatabase() {
         List<Item> items1 = Arrays.asList(
@@ -47,6 +46,18 @@ public class CategoryRestController {
         Category category2 = new Category("Pillow", "Pillow Image Url", items2);
         Category category3 = new Category("Mug", "Mug Image Url", items3);
 
+        for (Item value : items1) {
+            value.setCategory(category1);
+        }
+
+        for (Item value : items2) {
+            value.setCategory(category2);
+        }
+
+        for (Item value : items3) {
+            value.setCategory(category3);
+        }
+
         categoryService.save(category1);
         categoryService.save(category2);
         categoryService.save(category3);
@@ -54,13 +65,13 @@ public class CategoryRestController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @GetMapping("/{name}/items")
+    @GetMapping("categories/{name}/items")
     public ResponseEntity<List<ItemDTO>> getItemsByCategoryName(@PathVariable String name) {
         List<ItemDTO> items = categoryService.getAllItemsFromCategory(name);
         return ResponseEntity.status(HttpStatus.OK).body(items);
     }
 
-    @GetMapping("/all")
+    @GetMapping("/categories")
     public ResponseEntity<List<CategoryDTO>> getAllCategories() {
         List<CategoryDTO> categories = categoryService.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(categories);

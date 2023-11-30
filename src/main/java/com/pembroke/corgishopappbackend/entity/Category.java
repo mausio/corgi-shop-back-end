@@ -1,6 +1,9 @@
 package com.pembroke.corgishopappbackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,7 +22,7 @@ public class Category {
     private String imageUrl;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    private List<Item> items;
+    private List<Item> items = new ArrayList<>();
 
     public Category() {}
 
@@ -59,6 +62,7 @@ public class Category {
         this.items = items;
     }
 
+    @JsonManagedReference
     public List<Item> getItems() {
         return items;
     }
