@@ -1,5 +1,6 @@
 package com.pembroke.corgishopappbackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -17,10 +18,6 @@ public class Item {
     @Column(name = "price")
     private int price;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
-
     @Column(name = "is_favorite")
     private boolean isFavorite;
 
@@ -30,12 +27,15 @@ public class Item {
     @Column(name = "image_url")
     private String imageUrl;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
     public Item() {}
 
-    public Item(String name, int price, Category category, boolean isFavorite, String description, String imageUrl) {
+    public Item(String name, int price, boolean isFavorite, String description, String imageUrl) {
         this.name = name;
         this.price = price;
-        this.category = category;
         this.isFavorite = isFavorite;
         this.description = description;
         this.imageUrl = imageUrl;
@@ -65,14 +65,6 @@ public class Item {
         this.price = price;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
     public boolean isFavorite() {
         return isFavorite;
     }
@@ -97,13 +89,21 @@ public class Item {
         this.imageUrl = imageUrl;
     }
 
+    @JsonManagedReference
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     @Override
     public String toString() {
         return "Item{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
-                ", category=" + category +
                 ", isFavorite=" + isFavorite +
                 ", description='" + description + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +

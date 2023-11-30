@@ -1,5 +1,6 @@
 package com.pembroke.corgishopappbackend.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryDTO {
@@ -7,11 +8,12 @@ public class CategoryDTO {
     private int id;
     private String name;
     private String imageUrl;
-    private List<ItemDTO> items;
+    private List<ItemDTO> items = new ArrayList<>();
 
     public CategoryDTO() {}
 
     public CategoryDTO(String name, String imageUrl, List<ItemDTO> items) {
+        this.id = 0;
         this.name = name;
         this.imageUrl = imageUrl;
         this.items = items;

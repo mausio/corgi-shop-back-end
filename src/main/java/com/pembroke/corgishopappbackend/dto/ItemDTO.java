@@ -5,17 +5,16 @@ public class ItemDTO {
     private int id;
     private String name;
     private int price;
-    private CategoryDTO category;
     private boolean isFavorite;
     private String description;
     private String imageUrl;
 
     public ItemDTO() {}
 
-    public ItemDTO(String name, int price, CategoryDTO category, boolean isFavorite, String description, String imageUrl) {
+    public ItemDTO(String name, int price, boolean isFavorite, String description, String imageUrl) {
+        this.id = 0;
         this.name = name;
         this.price = price;
-        this.category = category;
         this.isFavorite = isFavorite;
         this.description = description;
         this.imageUrl = imageUrl;
@@ -43,14 +42,6 @@ public class ItemDTO {
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    public CategoryDTO getCategory() {
-        return category;
-    }
-
-    public void setCategory(CategoryDTO category) {
-        this.category = category;
     }
 
     public boolean isFavorite() {
@@ -83,7 +74,6 @@ public class ItemDTO {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
-                ", category=" + category +
                 ", isFavorite=" + isFavorite +
                 ", description='" + description + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
