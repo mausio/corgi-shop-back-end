@@ -4,6 +4,8 @@ import com.pembroke.corgishopappbackend.dao.CategoryRepository;
 import com.pembroke.corgishopappbackend.dto.CategoryDTO;
 import com.pembroke.corgishopappbackend.dto.ItemDTO;
 import com.pembroke.corgishopappbackend.entity.Category;
+import com.pembroke.corgishopappbackend.entity.Item;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,9 +27,7 @@ public class CategoryService {
 
     public List<ItemDTO> getAllItemsFromCategory(String categoryName) {
         Category category = categoryRepository.findByName(categoryName);
-        return category.getItems().stream()
-                .map(item -> modelMapper.map(item, ItemDTO.class))
-                .collect(Collectors.toList());
+        return convertToItemDTOList(category.getItems());
     }
 
     public List<CategoryDTO> findAll() {
@@ -40,5 +40,11 @@ public class CategoryService {
         Category category = modelMapper.map(category1, Category.class);
         Category savedCategory = categoryRepository.save(category);
         return modelMapper.map(savedCategory, CategoryDTO.class);
+    }
+
+    private List<ItemDTO> convertToItemDTOList(List<Item> items) {
+        return items.stream()
+                .map(item -> modelMapper.map(item, ItemDTO.class))
+                .collect(Collectors.toList());
     }
 }
