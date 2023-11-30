@@ -13,6 +13,7 @@ import com.pembroke.corgishopappbackend.dto.ItemDTO;
 import com.pembroke.corgishopappbackend.entity.Category;
 import com.pembroke.corgishopappbackend.service.CategoryService;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -28,9 +29,22 @@ public class CategoryRestController {
 
     @GetMapping("/saveCategories")
     public ResponseEntity<Void> saveCategoriesInLocalDatabase() {
-        Category category1 = new Category("Pullover", "Pullover Image Url", null);
-        Category category2 = new Category("Pillow", "Pillow Image Url", null);
-        Category category3 = new Category("Mug", "Mug Image Url", null);
+        List<ItemDTO> items1 = Arrays.asList(
+                new ItemDTO("PulloverItem1", 0, false, "Pullover Item1 Image Url", null),
+                new ItemDTO("PulloverItem2", 0, false, "Pullover Item2 Image Url", null)
+        );
+        List<ItemDTO> items2 = Arrays.asList(
+                new ItemDTO("PillowItem1", 0, false, "Pillow Item1 Image Url", null),
+                new ItemDTO("PillowItem2", 0, false, "Pillow Item2 Image Url", null)
+        );
+        List<ItemDTO> items3 = Arrays.asList(
+                new ItemDTO("MugItem1", 0, false, "Mug Item1 Image Url", null),
+                new ItemDTO("MugItem2", 0, false, "Mug Item2 Image Url", null)
+        );
+
+        Category category1 = new Category("Pullover", "Pullover Image Url", items1);
+        Category category2 = new Category("Pillow", "Pillow Image Url", items2);
+        Category category3 = new Category("Mug", "Mug Image Url", items3);
 
         categoryService.save(category1);
         categoryService.save(category2);
