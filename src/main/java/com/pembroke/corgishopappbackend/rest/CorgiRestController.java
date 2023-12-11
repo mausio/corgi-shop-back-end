@@ -31,11 +31,11 @@ public class CorgiRestController {
     @GetMapping("/saveCorgis")
     public ResponseEntity saveCorgisInLocalDatabase() {
 
-        Corgi corgi1 = new Corgi("Robin", 100, "Robin is dog", "https:\\/\\/images.dog.ceo\\/breeds\\/corgi-cardigan\\/miss-muffin.jpg", new Date(), "white", 80, 190, true);
-        Corgi corgi2 = new Corgi("Mael", 200, "Mael is dog", "https:\\/\\/images.dog.ceo\\/breeds\\/corgi-cardigan\\/n02113186_1030.jpg", new Date(), "notWhite", 80, 190, true);
-        Corgi corgi3 = new Corgi("Lily", 300, "Lily is dog", "", new Date(), "white", 80, 190, true);
-        Corgi corgi4 = new Corgi("Luna", 400, "Luna is dog", "", new Date(), "notWhite", 80, 190, true);
-        Corgi corgi5 = new Corgi("Luna", 500, "Luna is dog", "", new Date(), "notWhite", 80, 190, true);
+        Corgi corgi1 = new Corgi("Robin", 100, "Robin is dog", "https://www.akc.org/wp-content/uploads/2017/11/Pembroke-Welsh-Corgi-standing-outdoors-in-the-fall-400x267.jpg", new Date(), "white", 80, 190, true);
+        Corgi corgi2 = new Corgi("Mael", 200, "Mael is dog", "https://www.zooplus.de/magazin/wp-content/uploads/2017/07/Welsh-Corgi-Pembroke-sitzt-in-der-Natur-1024x682.jpeg", new Date(), "notWhite", 80, 190, true);
+        Corgi corgi3 = new Corgi("Lily", 300, "Lily is dog", "https://www.purina.de/sites/default/files/styles/ttt_image_510/public/2021-01/Welsh%20Corgi%20%28Pembroke%291.jpg?itok=-ALFB8xn", new Date(), "white", 80, 190, true);
+        Corgi corgi4 = new Corgi("Luna", 400, "Luna is dog", "https://www.tierchenwelt.de/images/stories/haustiere/hunde/welsh_corgi_hunderasse_l.jpg", new Date(), "notWhite", 80, 190, true);
+        Corgi corgi5 = new Corgi("Luna", 500, "Luna is dog", "https://www.hundeo.com/wp-content/uploads/2019/04/Welsh-Corgi-Pembroke-glu%CC%88cklich.jpg", new Date(), "notWhite", 80, 190, true);
 
         corgiService.save(corgi1);
         corgiService.save(corgi2);
