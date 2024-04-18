@@ -1,0 +1,129 @@
+openapi: 3.0.3
+info:
+  title: Corgi-Shop-App-Backend Endpoints
+  description: OpenApi-File for Corgi-Shop-App-Backend endpoints
+  version: 1.0.0
+servers:
+
+  - url: https://corgi.melonigemelone.de/api/
+    description: Official server
+
+  - url: 'http://localhost:8080/api'
+    description: Local server
+    
+paths:
+  /user/checkout:
+    parameters:
+      - in: header
+        name: Authorization
+        schema:
+          type: string
+        required: true
+        description: jwt token
+    get:
+      responses:
+        400:
+          description: Checkout/BackEnd problems
+        404:
+          description: Wrong token
+        200:
+          description: Returns ok if the checkout was successful
+
+  /user/cart:
+    parameters:
+      - in: header
+        name: Authorization
+        schema:
+          type: string
+        required: true
+        description: jwt token
+    get:
+      responses:
+        400:
+          description: Cart/BackEnd problems
+        404:
+          description: Wrong token
+        200:
+          description: Returns the user's cart
+
+  /user/cart/add:
+    parameters:
+      - in: header
+        name: Authorization
+        schema:
+          type: string
+        required: true
+        description: jwt token
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                corgiId:
+                  type: string
+                itemId:
+                  type: string
+      responses:
+        400:
+          description: Cart/BackEnd problems
+        404:
+          description: Wrong token
+        200:
+          description: Adds an item/corgi to the user's cart
+
+  /user/cart/remove:
+    parameters:
+      - in: header
+        name: Authorization
+        schema:
+          type: string
+        required: true
+        description: jwt token
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                corgiId:
+                  type: string
+                itemId:
+                  type: string
+      responses:
+        400:
+          description: Cart/BackEnd problems
+        404:
+          description: Wrong token
+        200:
+          description: Removes an item/corgi from the user's cart
+
+  /user:
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                password:
+                  type: string
+                email:
+                  type: string
+      responses:
+        401:
+          description: Wrong password
+        404:
+          description: User not found
+        200:
+          description: User successfully logged in
+          content:
+            application/json:
+              schema:
+                properties:
+                  jwtToken:
+                    type: string
