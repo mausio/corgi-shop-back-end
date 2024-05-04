@@ -1,22 +1,35 @@
-package com.pembroke.corgishopappbackend.dto;
+package com.pembroke.corgishopappbackend.entity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CartDTO {
+import com.pembroke.corgishopappbackend.dto.CorgiDTO;
+import com.pembroke.corgishopappbackend.dto.ItemDTO;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "cart")
+public class Cart {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
-    private List<CorgiDTO> corgis;
-    private List<ItemDTO> items;
 
-    public CartDTO() {}
+    @Column(name = "corgis")
+    private List<CorgiDTO> corgis; 
 
-    public CartDTO(List<CorgiDTO> corgis, List<ItemDTO> items) {
-        this.id = 0;
+    @Column(name = "itmes")
+    private List<ItemDTO> items; 
+
+    public Cart() {}
+
+    public Cart(List<CorgiDTO> corgis, List<ItemDTO> items) {
         this.corgis = new ArrayList<>(corgis);
         this.items = new ArrayList<>(items);
     }
-
+    
     public int getId() {
         return id;
     }

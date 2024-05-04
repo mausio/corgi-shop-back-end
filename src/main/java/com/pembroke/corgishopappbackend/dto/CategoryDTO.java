@@ -8,7 +8,7 @@ public class CategoryDTO {
     private int id;
     private String name;
     private String imageUrl;
-    private List<ItemDTO> items = new ArrayList<>();
+    private List<ItemDTO> items;
 
     public CategoryDTO() {}
 
@@ -16,7 +16,7 @@ public class CategoryDTO {
         this.id = 0;
         this.name = name;
         this.imageUrl = imageUrl;
-        this.items = items;
+        this.items = items  = new ArrayList<>();
     }
 
     public int getId() {

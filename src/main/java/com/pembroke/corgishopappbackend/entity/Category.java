@@ -32,8 +32,6 @@ public class Category {
         this.items = items1;
     }
 
-    
-
     public int getId() {
         return id;
     }
