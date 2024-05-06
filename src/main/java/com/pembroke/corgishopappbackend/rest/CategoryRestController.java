@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pembroke.corgishopappbackend.dto.CategoryDTO;
 import com.pembroke.corgishopappbackend.dto.ItemDTO;
+import com.pembroke.corgishopappbackend.entity.Category;
+import com.pembroke.corgishopappbackend.entity.Item;
 import com.pembroke.corgishopappbackend.service.CategoryService;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
