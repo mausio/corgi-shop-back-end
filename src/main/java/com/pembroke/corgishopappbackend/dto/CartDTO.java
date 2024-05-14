@@ -6,15 +6,15 @@ import java.util.List;
 public class CartDTO {
 
     private int id;
-    private List<CorgiDTO> corgis;
-    private List<ItemDTO> items;
+    private List<CorgiDTO> corgis = new ArrayList<>();
+    private List<ItemDTO> items= new ArrayList<>();
 
     public CartDTO() {}
 
     public CartDTO(List<CorgiDTO> corgis, List<ItemDTO> items) {
         this.id = 0;
-        this.corgis = new ArrayList<>(corgis);
-        this.items = new ArrayList<>(items);
+        this.corgis = corgis;
+        this.items = items;
     }
 
     public int getId() {
@@ -33,12 +33,11 @@ public class CartDTO {
         this.corgis = corgis;
     }
 
-    public CorgiDTO getCorgi(int index) throws IndexOutOfBoundsException {
+    public CorgiDTO getCorgi(int index) {
         if (index >= 0 && index < corgis.size()) {
             return corgis.get(index);
-        } else {
-            throw new IndexOutOfBoundsException("Invalid index");
         }
+        return null;
     }
 
     public void addCorgi(CorgiDTO corgi) {
@@ -53,12 +52,11 @@ public class CartDTO {
         this.items = items;
     }
 
-    public ItemDTO getItem(int index) throws IndexOutOfBoundsException {
+    public ItemDTO getItem(int index) {
         if (index >= 0 && index < items.size()) {
             return items.get(index);
-        } else {
-            throw new IndexOutOfBoundsException("Invalid index");
         }
+        return null; 
     }
 
     public void addItem(ItemDTO item) {

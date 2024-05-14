@@ -18,16 +18,16 @@ public class Cart {
     private int id;
 
     @Column(name = "corgis")
-    private List<CorgiDTO> corgis; 
+    private List<CorgiDTO> corgis= new ArrayList<>(); 
 
     @Column(name = "itmes")
-    private List<ItemDTO> items; 
+    private List<ItemDTO> items = new ArrayList<>(); 
 
     public Cart() {}
 
     public Cart(List<CorgiDTO> corgis, List<ItemDTO> items) {
-        this.corgis = new ArrayList<>(corgis);
-        this.items = new ArrayList<>(items);
+        this.corgis = corgis;
+        this.items = items;
     }
     
     public int getId() {
@@ -46,12 +46,11 @@ public class Cart {
         this.corgis = corgis;
     }
 
-    public CorgiDTO getCorgi(int index) throws IndexOutOfBoundsException {
+    public CorgiDTO getCorgi(int index) {
         if (index >= 0 && index < corgis.size()) {
             return corgis.get(index);
-        } else {
-            throw new IndexOutOfBoundsException("Invalid index");
         }
+        return null; 
     }
 
     public void addCorgi(CorgiDTO corgi) {
@@ -66,12 +65,10 @@ public class Cart {
         this.items = items;
     }
 
-    public ItemDTO getItem(int index) throws IndexOutOfBoundsException {
+    public ItemDTO getItem(int index) {
         if (index >= 0 && index < items.size()) {
             return items.get(index);
-        } else {
-            throw new IndexOutOfBoundsException("Invalid index");
-        }
+        } return null;
     }
 
     public void addItem(ItemDTO item) {
