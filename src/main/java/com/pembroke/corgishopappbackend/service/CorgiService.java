@@ -30,5 +30,22 @@ public class CorgiService {
     public CorgiDTO save(Corgi corgi) {
         return modelMapper.map(corgiRepository.save(corgi), CorgiDTO.class);
     }
+    
+    public List<CorgiDTO> getCorgisInCart() {
+        return corgiRepository.findAll().stream()
+                .filter(corgi -> corgi.isInCart())
+                .map(corgi -> modelMapper.map(corgi, CorgiDTO.class))
+                .collect(java.util.stream.Collectors.toList());
+    }
 
+    public void addCorgiToCart(){
+        List<Corgi> corgis = corgiRepository.findAll();
+        for (Corgi corgi : corgis) {
+            if (!corgi.isInCart()) {
+                corgi.setInCart(true);
+                corgiRepository.save(corgi);
+                break;
+            }
+        }
+    }
 }
