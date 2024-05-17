@@ -13,6 +13,9 @@ public class Corgi {
     @Column(name = "id")
     private int id;
 
+    @Column(name = "uuid")
+    private String uuid;
+
     @Column(name = "name")
     private String name;
 
@@ -52,6 +55,7 @@ public class Corgi {
         this.weight = weight;
         this.height = height;
         this.isMale = isMale;
+        this.uuid = java.util.UUID.randomUUID().toString();
     }
 
     public int getId() {
@@ -134,10 +138,19 @@ public class Corgi {
         isMale = male;
     }
 
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
     @Override
     public String toString() {
         return "Corgi{" +
                 "id=" + id +
+                ", uuid='" + uuid + '\'' +
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", description='" + description + '\'' +

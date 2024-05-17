@@ -3,7 +3,7 @@ package com.pembroke.corgishopappbackend.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "user")
+@Table(name = "user_")
 public class User {
 
     @Id
@@ -14,9 +14,6 @@ public class User {
     @Column(name = "username")
     private String username;
 
-    @Column(name = "email")
-    private String email;
-
     @Column(name = "password")
     private String password;
 
@@ -24,9 +21,8 @@ public class User {
 
     public User() {}
 
-    public User(String username, String email, String password) {
+    public User(String username, String password) {
         this.username = username;
-        this.email = email;
         this.password = password;
     }
 
@@ -46,14 +42,6 @@ public class User {
         this.username = username;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -67,7 +55,6 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
