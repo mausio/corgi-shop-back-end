@@ -10,17 +10,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.List;
 
 public class BasicAuthenticationFilter extends OncePerRequestFilter {
 
     @Autowired
     private UserDetailsService userDetailsService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     private final Logger logger = LoggerFactory.getLogger(BasicAuthenticationFilter.class);
 
     @Override
@@ -40,9 +44,19 @@ public class BasicAuthenticationFilter extends OncePerRequestFilter {
                     logger.info("Password: {}", password);
 
                     UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                    SecurityContextHolder.getContext().setAuthentication(authentication);
+
+                    logger.info("Encoded Password: {}", userDetails.getPassword());
+                    logger.info("Coded Password: {}", password);
+
+                    if (passwordEncoder.matches(password, userDetails.getPassword())) {
+                        logger.info("Password matches");
+                        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, List.of(new SimpleGrantedAuthority("ROLE_USER")));
+                        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                        SecurityContextHolder.getContext().setAuthentication(authentication);
+                    } else {
+                        logger.info("Password does not match");
+                    }
+
                 }
 
             }
