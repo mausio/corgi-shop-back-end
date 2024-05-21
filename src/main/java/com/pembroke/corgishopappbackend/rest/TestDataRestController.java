@@ -1,8 +1,10 @@
 package com.pembroke.corgishopappbackend.rest;
 
+import com.pembroke.corgishopappbackend.dao.UserRepository;
 import com.pembroke.corgishopappbackend.entity.Category;
 import com.pembroke.corgishopappbackend.entity.Corgi;
 import com.pembroke.corgishopappbackend.entity.Item;
+import com.pembroke.corgishopappbackend.entity.User;
 import com.pembroke.corgishopappbackend.service.CategoryService;
 import com.pembroke.corgishopappbackend.service.CorgiService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +21,16 @@ public class TestDataRestController {
 
     private final CorgiService corgiService;
     private final CategoryService categoryService;
+    private final UserRepository userRepository;
 
     @Autowired
-    public TestDataRestController(CorgiService corgiService, CategoryService categoryService) {
+    public TestDataRestController(CorgiService corgiService, CategoryService categoryService, UserRepository userRepository) {
         this.corgiService = corgiService;
         this.categoryService = categoryService;
+        this.userRepository = userRepository;
     }
 
-    @GetMapping("/test-data/corgis")
+    @GetMapping("/test-data")
     public ResponseEntity<String> addTestDataCorgis() {
 
         Corgi corgi1 = new Corgi("Robin", 100, "Robin is dog", "https://www.akc.org/wp-content/uploads/2017/11/Pembroke-Welsh-Corgi-standing-outdoors-in-the-fall-400x267.jpg", new Date(), "white", 80, 190, true);
@@ -49,30 +53,28 @@ public class TestDataRestController {
         corgiService.save(corgi8);
         corgiService.save(corgi9);
 
-        return ResponseEntity.ok("Test corgi data added");
-    }
-
-    @GetMapping("/test-data/categories")
-    public ResponseEntity<String> addTestDataCategories() {
-
         List<Item> items1 = Arrays.asList(
-                new Item("PulloverItem1", 30, false, "Pullover Item1 Image Url", null),
-                new Item("PulloverItem2", 40, false, "Pullover Item2 Image Url", null),
-                new Item("PulloverItem3", 50, false, "Pullover Item3 Image Url", null),
-                new Item("PulloverItem4", 60, false, "Pullover Item2 Image Url", null)
+                new Item("PulloverItem1", 30, false, "Pullover Item1", null),
+                new Item("PulloverItem2", 40, false, "Pullover Item2", null),
+                new Item("PulloverItem3", 50, false, "Pullover Item3", null),
+                new Item("PulloverItem4", 60, false, "Pullover Item4", null)
         );
         List<Item> items2 = Arrays.asList(
-                new Item("PillowItem1", 0, false, "Pillow Item1 Image Url", null),
-                new Item("PillowItem2", 0, false, "Pillow Item2 Image Url", null)
+                new Item("PillowItem1", 10, false, "Pillow Item1", null),
+                new Item("PillowItem2", 20, false, "Pillow Item2", null),
+                new Item("PillowItem3", 30, false, "Pillow Item3", null),
+                new Item("PillowItem4", 40, false, "Pillow Item4", null)
         );
         List<Item> items3 = Arrays.asList(
-                new Item("MugItem1", 0, false, "Mug Item1 Image Url", null),
-                new Item("MugItem2", 0, false, "Mug Item2 Image Url", null)
+                new Item("MugItem1", 70, false, "Mug Item1", null),
+                new Item("MugItem2", 80, false, "Mug Item2", null),
+                new Item("MugItem3", 90, false, "Mug Item3", null),
+                new Item("MugItem4", 100, false, "Mug Item4", null)
         );
 
-        Category category1 = new Category("Pullover", "Pullover Image Url", items1);
-        Category category2 = new Category("Pillow", "Pillow Image Url", items2);
-        Category category3 = new Category("Mug", "Mug Image Url", items3);
+        Category category1 = new Category("Pullover", "Pullover", items1);
+        Category category2 = new Category("Pillow", "Pillow", items2);
+        Category category3 = new Category("Mug", "Mug", items3);
 
         for (Item value : items1) {
             value.setCategory(category1);
@@ -90,7 +92,9 @@ public class TestDataRestController {
         categoryService.save(category2);
         categoryService.save(category3);
 
-        return ResponseEntity.ok("Test category data added");
+        userRepository.save(new User("user", "$2b$04$t2buI1Q2lpdNFCX3BuoKVetloTeQxJ.4UcGAMEOqftYYZmnz1aX62"));
+
+        return ResponseEntity.ok("Test data added");
     }
 
 }
