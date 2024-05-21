@@ -30,5 +30,6 @@ public class CorgiService {
     public CorgiDTO save(Corgi corgi) {
         return modelMapper.map(corgiRepository.save(corgi), CorgiDTO.class);
     }
+    
 
 }
