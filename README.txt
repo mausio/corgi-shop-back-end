@@ -29,3 +29,7 @@ Using TablePlus:
   - Name the Database "Corgi-shop-app"
   - Username: corgiShopApp, Password: corgiShopApp, Database: corgiShopAppDB
   - Click "Save"
+
+
+User-Credentials:
+    - Username: user, Password: $2b$04$t2buI1Q2lpdNFCX3BuoKVetloTeQxJ.4UcGAMEOqftYYZmnz1aX62

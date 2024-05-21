@@ -12,6 +12,9 @@ public class Item {
     @Column(name = "id")
     private int id;
 
+    @Column(name = "uuid")
+    private String uuid;
+
     @Column(name = "name")
     private String name;
 
@@ -39,6 +42,7 @@ public class Item {
         this.isFavorite = isFavorite;
         this.description = description;
         this.imageUrl = imageUrl;
+        this.uuid = java.util.UUID.randomUUID().toString();
     }
 
     public int getId() {
@@ -89,6 +93,14 @@ public class Item {
         this.imageUrl = imageUrl;
     }
 
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
     @JsonManagedReference
     public Category getCategory() {
         return category;
@@ -102,6 +114,7 @@ public class Item {
     public String toString() {
         return "Item{" +
                 "id=" + id +
+                ", uuid='" + uuid + '\'' +
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", isFavorite=" + isFavorite +
