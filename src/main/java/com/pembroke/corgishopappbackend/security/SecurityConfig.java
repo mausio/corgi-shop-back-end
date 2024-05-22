@@ -38,7 +38,7 @@ public class SecurityConfig {
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         http.authorizeHttpRequests(auth -> auth
-                .requestMatchers(new AntPathRequestMatcher("/api/corgis")).hasRole("USER") // replace /api/corgis with cart-url
+                .requestMatchers(new AntPathRequestMatcher("/api/user/cart/corgis"), new AntPathRequestMatcher("/api/user/cart/items")).hasRole("USER")
                 .requestMatchers("/api/user/signIn").permitAll()
                 .anyRequest().permitAll());
 

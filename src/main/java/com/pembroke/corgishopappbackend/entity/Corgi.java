@@ -1,5 +1,7 @@
 package com.pembroke.corgishopappbackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -42,6 +44,10 @@ public class Corgi {
 
     @Column(name = "isMale")
     private boolean isMale;
+
+    @ManyToOne
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
 
     public Corgi() {}
 
@@ -144,6 +150,15 @@ public class Corgi {
 
     public void setUuid(String uuid) {
         this.uuid = uuid;
+    }
+
+    @JsonBackReference
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 
     @Override

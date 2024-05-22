@@ -1,5 +1,6 @@
 package com.pembroke.corgishopappbackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -33,6 +34,11 @@ public class Item {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+
+
+    @ManyToOne
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
 
     public Item() {}
 
@@ -101,13 +107,22 @@ public class Item {
         this.uuid = uuid;
     }
 
-    @JsonManagedReference
+    @JsonBackReference
     public Category getCategory() {
         return category;
     }
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    @JsonBackReference
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 
     @Override

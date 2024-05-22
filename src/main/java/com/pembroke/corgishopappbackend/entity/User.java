@@ -1,5 +1,6 @@
 package com.pembroke.corgishopappbackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -17,13 +18,16 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    // cart
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cart_id", referencedColumnName = "id")
+    private Cart cart;
 
     public User() {}
 
-    public User(String username, String password) {
+    public User(String username, String password, Cart cart) {
         this.username = username;
         this.password = password;
+        this.cart = cart;
     }
 
     public int getId() {
@@ -50,12 +54,21 @@ public class User {
         this.password = password;
     }
 
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", cart='" + cart +
                 '}';
     }
 }

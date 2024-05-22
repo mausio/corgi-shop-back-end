@@ -1,10 +1,8 @@
 package com.pembroke.corgishopappbackend.rest;
 
+import com.pembroke.corgishopappbackend.dao.CartRepository;
 import com.pembroke.corgishopappbackend.dao.UserRepository;
-import com.pembroke.corgishopappbackend.entity.Category;
-import com.pembroke.corgishopappbackend.entity.Corgi;
-import com.pembroke.corgishopappbackend.entity.Item;
-import com.pembroke.corgishopappbackend.entity.User;
+import com.pembroke.corgishopappbackend.entity.*;
 import com.pembroke.corgishopappbackend.service.CategoryService;
 import com.pembroke.corgishopappbackend.service.CorgiService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +20,14 @@ public class TestDataRestController {
     private final CorgiService corgiService;
     private final CategoryService categoryService;
     private final UserRepository userRepository;
+    private final CartRepository cartRepository;
 
     @Autowired
-    public TestDataRestController(CorgiService corgiService, CategoryService categoryService, UserRepository userRepository) {
+    public TestDataRestController(CorgiService corgiService, CategoryService categoryService, UserRepository userRepository, CartRepository cartRepository) {
         this.corgiService = corgiService;
         this.categoryService = categoryService;
         this.userRepository = userRepository;
+        this.cartRepository = cartRepository;
     }
 
     @GetMapping("/test-data")
@@ -92,7 +92,21 @@ public class TestDataRestController {
         categoryService.save(category2);
         categoryService.save(category3);
 
-        userRepository.save(new User("user", "$2y$10$4U8NfYDeUt83qg9BhyJ12Oq6EaCjMwnZDM2L.kdnr09vCtqxQzMxG"));
+        List<Corgi> corgis = Arrays.asList(corgi1, corgi2, corgi3);
+        List<Item> items = Arrays.asList(items1.get(0), items2.get(0), items3.get(0));
+        Cart cart = new Cart(corgis, items);
+
+        for (Corgi value : corgis) {
+            value.setCart(cart);
+        }
+
+        for (Item value : items) {
+            value.setCart(cart);
+        }
+
+        cartRepository.save(cart);
+
+        userRepository.save(new User("user", "$2y$10$4U8NfYDeUt83qg9BhyJ12Oq6EaCjMwnZDM2L.kdnr09vCtqxQzMxG", cart));
 
         return ResponseEntity.ok("Test data added");
     }
