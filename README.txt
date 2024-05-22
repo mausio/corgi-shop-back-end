@@ -32,4 +32,4 @@ Using TablePlus:
 
 
 User-Credentials:
-    - Username: user, Password: $2b$04$t2buI1Q2lpdNFCX3BuoKVetloTeQxJ.4UcGAMEOqftYYZmnz1aX62
+    - Username: user, Password: user
