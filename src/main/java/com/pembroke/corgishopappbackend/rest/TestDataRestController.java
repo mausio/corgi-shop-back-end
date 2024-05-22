@@ -92,7 +92,7 @@ public class TestDataRestController {
         categoryService.save(category2);
         categoryService.save(category3);
 
-        userRepository.save(new User("user", "$2b$04$t2buI1Q2lpdNFCX3BuoKVetloTeQxJ.4UcGAMEOqftYYZmnz1aX62"));
+        userRepository.save(new User("user", "$2y$10$4U8NfYDeUt83qg9BhyJ12Oq6EaCjMwnZDM2L.kdnr09vCtqxQzMxG"));
 
         return ResponseEntity.ok("Test data added");
     }
