@@ -1,5 +1,7 @@
 package com.pembroke.corgishopappbackend.service;
 
+import com.pembroke.corgishopappbackend.dao.CartRepository;
+import com.pembroke.corgishopappbackend.entity.Cart;
 import com.pembroke.corgishopappbackend.entity.Corgi;
 import com.pembroke.corgishopappbackend.entity.Item;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +14,12 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final CartRepository cartRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, CartRepository cartRepository) {
         this.userRepository = userRepository;
+        this.cartRepository = cartRepository;
     }
 
     public List<Corgi> findCorgisById(int id) {
@@ -26,5 +30,8 @@ public class UserService {
         return userRepository.findItemsByUserId(id);
     }
 
-    // TODO: Create Method for saving and deleting Items/Corgis in Cart (UUID or ID?)
+    public void save(Cart cart) {
+        cartRepository.save(cart);
+    }
+
 }

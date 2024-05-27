@@ -27,9 +27,12 @@ public class CorgiService {
                 .collect(java.util.stream.Collectors.toList());
     }
 
-    public CorgiDTO save(Corgi corgi) {
-        return modelMapper.map(corgiRepository.save(corgi), CorgiDTO.class);
+    public void save(Corgi corgi) {
+        modelMapper.map(corgiRepository.save(corgi), CorgiDTO.class);
+    } // TODO: Delete this function
+
+    public Corgi findCorgiByUuid(String uuid) {
+        return corgiRepository.findCorgiByUuid(uuid);
     }
-    
 
 }

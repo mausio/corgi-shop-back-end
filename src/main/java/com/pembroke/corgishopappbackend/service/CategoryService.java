@@ -38,10 +38,14 @@ public class CategoryService {
     }
 
     //TODO: Delete this method when using a final Database
-    public CategoryDTO save(Category category1) {
+    public void save(Category category1) {
         Category category = modelMapper.map(category1, Category.class);
         Category savedCategory = categoryRepository.save(category);
-        return modelMapper.map(savedCategory, CategoryDTO.class);
+        modelMapper.map(savedCategory, CategoryDTO.class);
+    }
+
+    public Category findCategoryByName(String name) {
+        return categoryRepository.findByName(name);
     }
 
 }
