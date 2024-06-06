@@ -14,9 +14,9 @@ jobs:
       postgres:
         image: postgres:latest
         env:
-          POSTGRES_DB: testdb
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: corgiShopAppDB
+          POSTGRES_USER: corgiShopApp
+          POSTGRES_PASSWORD: corgiShopApp
         ports:
           - 5432:5432
         options: >-
@@ -26,9 +26,9 @@ jobs:
           --health-retries 5
 
     env:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/testdb
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/corgiShopAppDB
+      SPRING_DATASOURCE_USERNAME: corgiShopApp
+      SPRING_DATASOURCE_PASSWORD: corgiShopApp
 
     steps:
     - name: Checkout code
@@ -46,6 +46,15 @@ jobs:
         path: ~/.m2/repository
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-maven-
+
+    - name: Wait for PostgreSQL to be ready
+      run: |
+        for i in {1..30}; do
+          nc -zv localhost 5432 && echo "PostgreSQL is up!" && exit 0
+          echo "Waiting for PostgreSQL..."
+          sleep 1
+        done
+        echo "PostgreSQL failed to start" && exit 1
 
     - name: Build with Maven
       run: mvn clean install
