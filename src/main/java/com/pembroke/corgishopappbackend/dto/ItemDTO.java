@@ -3,6 +3,7 @@ package com.pembroke.corgishopappbackend.dto;
 public class ItemDTO {
 
     private int id;
+    private String uuid;
     private String name;
     private int price;
     private boolean isFavorite;
@@ -11,13 +12,14 @@ public class ItemDTO {
 
     public ItemDTO() {}
 
-    public ItemDTO(String name, int price, boolean isFavorite, String description, String imageUrl) {
+    public ItemDTO(String name, int price, boolean isFavorite, String description, String imageUrl, String uuid) {
         this.id = 0;
         this.name = name;
         this.price = price;
         this.isFavorite = isFavorite;
         this.description = description;
         this.imageUrl = imageUrl;
+        this.uuid = uuid;
     }
 
     public int getId() {
@@ -68,10 +70,19 @@ public class ItemDTO {
         this.imageUrl = imageUrl;
     }
 
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
     @Override
     public String toString() {
         return "ItemDTO{" +
                 "id=" + id +
+                ", uuid='" + uuid + '\'' +
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", isFavorite=" + isFavorite +

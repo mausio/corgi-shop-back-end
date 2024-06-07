@@ -3,6 +3,7 @@ package com.pembroke.corgishopappbackend.dto;
 public class CorgiDTO {
 
     private int id;
+    private String uuid;
     private String name;
     private int price;
     private String description;
@@ -15,7 +16,7 @@ public class CorgiDTO {
 
     public CorgiDTO() {}
 
-    public CorgiDTO(String name, int price, String description, String imageUrl, String birthdate, String coatColor, int weight, int height, boolean isMale) {
+    public CorgiDTO(String name, int price, String description, String imageUrl, String birthdate, String coatColor, int weight, int height, boolean isMale, String uuid) {
         this.name = name;
         this.price = price;
         this.description = description;
@@ -25,6 +26,7 @@ public class CorgiDTO {
         this.weight = weight;
         this.height = height;
         this.isMale = isMale;
+        this.uuid = uuid;
     }
 
     public int getId() {
@@ -107,10 +109,19 @@ public class CorgiDTO {
         isMale = male;
     }
 
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
     @Override
     public String toString() {
         return "CorgiDTO{" +
                 "id=" + id +
+                ", uuid='" + uuid + '\'' +
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", description='" + description + '\'' +
