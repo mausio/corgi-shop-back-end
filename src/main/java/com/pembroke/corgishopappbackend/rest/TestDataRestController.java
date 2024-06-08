@@ -1,7 +1,6 @@
 package com.pembroke.corgishopappbackend.rest;
 
-import com.pembroke.corgishopappbackend.dao.CartRepository;
-import com.pembroke.corgishopappbackend.dao.UserRepository;
+import com.pembroke.corgishopappbackend.dao.*;
 import com.pembroke.corgishopappbackend.entity.*;
 import com.pembroke.corgishopappbackend.service.CategoryService;
 import com.pembroke.corgishopappbackend.service.CorgiService;
@@ -21,13 +20,19 @@ public class TestDataRestController {
     private final CategoryService categoryService;
     private final UserRepository userRepository;
     private final CartRepository cartRepository;
+    private final CorgiRepository corgiRepository;
+    private final ItemRepository itemRepository;
+    private final CategoryRepository categoryRepository;
 
     @Autowired
-    public TestDataRestController(CorgiService corgiService, CategoryService categoryService, UserRepository userRepository, CartRepository cartRepository) {
+    public TestDataRestController(CorgiService corgiService, CategoryService categoryService, UserRepository userRepository, CartRepository cartRepository, CorgiRepository corgiRepository, CorgiRepository corgiRepository1, ItemRepository itemRepository, CategoryRepository categoryRepository) {
         this.corgiService = corgiService;
         this.categoryService = categoryService;
         this.userRepository = userRepository;
         this.cartRepository = cartRepository;
+        this.corgiRepository = corgiRepository1;
+        this.itemRepository = itemRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @GetMapping("/test-data")
@@ -114,5 +119,15 @@ public class TestDataRestController {
 
         return ResponseEntity.ok("Test data added");
     }
+
+    @GetMapping("/delete-all")
+    public ResponseEntity<String> deleteAllData() {
+    userRepository.deleteAll();
+    cartRepository.deleteAll();
+    corgiRepository.deleteAll();
+    categoryRepository.deleteAll();
+    itemRepository.deleteAll();
+    return ResponseEntity.ok("All data deleted");
+}
 
 }

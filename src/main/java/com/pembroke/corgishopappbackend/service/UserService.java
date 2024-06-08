@@ -4,6 +4,7 @@ import com.pembroke.corgishopappbackend.dao.CartRepository;
 import com.pembroke.corgishopappbackend.entity.Cart;
 import com.pembroke.corgishopappbackend.entity.Corgi;
 import com.pembroke.corgishopappbackend.entity.Item;
+import com.pembroke.corgishopappbackend.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.pembroke.corgishopappbackend.dao.UserRepository;
@@ -32,6 +33,10 @@ public class UserService {
 
     public void save(Cart cart) {
         cartRepository.save(cart);
+    }
+
+    public User findUserByName(String name) {
+        return userRepository.findByUsername(name);
     }
 
 }

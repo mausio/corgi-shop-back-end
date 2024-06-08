@@ -63,18 +63,18 @@ public class UserRestController {
 
     @GetMapping("/user/cart/items")
     public ResponseEntity<List<Item>> getItemsInCart() {
-        return ResponseEntity.ok(userService.findItemsById(1)); // Schlecht aber es gibt nur einen User also passt
+        return ResponseEntity.ok(userService.findItemsById(userService.findUserByName("user").getId()));
     }
 
     @GetMapping("/user/cart/corgis")
     public ResponseEntity<List<Corgi>> getCorgisInCart() {
-        return ResponseEntity.ok(userService.findCorgisById(1)); // Schlecht aber es gibt nur einen User also passt
+        return ResponseEntity.ok(userService.findCorgisById(userService.findUserByName("user").getId()));
     }
 
     @GetMapping("/user/cart/add/{uuid}")
     public ResponseEntity<Boolean> addItemToCart(@PathVariable String uuid) {
 
-        Cart cart = cartRepository.findCartById(1); // Schlecht aber es gibt nur einen Cart also passt
+        Cart cart = cartRepository.findCartById(userService.findUserByName("user").getId());
 
         if (itemRepository.findItemByUuid(uuid) != null) {
             cart.getItems().add(itemRepository.findItemByUuid(uuid));

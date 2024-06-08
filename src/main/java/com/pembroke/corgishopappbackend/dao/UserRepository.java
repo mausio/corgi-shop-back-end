@@ -23,4 +23,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
             " WHERE u.id = ?1 AND u.cart.id = c.id AND c.id = i.cart.id")
     List<Item> findItemsByUserId(int userId);
 
+
+
 }
