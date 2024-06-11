@@ -81,9 +81,9 @@ public class TestDataRestController {
 
 
 
-        Category category1 = new Category("Pullover", "Pullover", items1);
-        Category category2 = new Category("Pillow", "Pillow", items2);
-        Category category3 = new Category("Mug", "Mug", items3);
+        Category category1 = new Category("Pullover", "https://i.pinimg.com/originals/45/cd/58/45cd581d8e8654c7abbb592c3b683bf5.jpg", items1);
+        Category category2 = new Category("Pillow", "https://i.pinimg.com/originals/14/4c/72/144c727f0711edc382b9393e008ad63a.jpg", items2);
+        Category category3 = new Category("Mug", "", items3);
 
         for (Item value : items1) {
             value.setCategory(category1);
